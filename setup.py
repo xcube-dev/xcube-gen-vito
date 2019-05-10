@@ -37,7 +37,7 @@ version = None
 setup(
     name="xcube-gen-vito",
     version=version,
-    description='xcube input processor for data provided by RBINS',
+    description='xcube input processor for data provided by VITO',
     license='MIT',
     author='xcube Development Team',
     packages=packages,
