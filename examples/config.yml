@@ -1,0 +1,111 @@
+# Note input_files and output_dir is expected to be provided as CLI arguments
+#
+# xcube --traceback gen -c examples\config.yml -d D:\EOData\DCS4COP \
+#       --append --sort \
+#       Y:\related\DCS4COP\cube_input\S2plus\2017\**\DCS4COP_S2A_0021_FLANDERS_*.nc
+#
+
+input_processor: vito-s2plus-l2
+
+output_region: [0.12, 50.43, 1.72, 51.437]
+
+output_size: [10944, 6848]  # 10944 = 684 * 2**4, 6848 = 428 * 2**4
+
+output_writer: zarr
+
+output_writer_params:
+  chunksizes:
+    lon: 684
+    lat: 428
+
+output_name: dcs4cop_xcube_S2A_FLANDERS_2017_1x428x684
+
+output_variables:
+
+  - rrs_560:
+      resampling: Nearest
+
+  - CHL_Bourg:
+      resampling: Nearest
+
+
+processed_variables:
+  - PIXEL_CLASSIFY_FLAGS
+
+  - rrs_560:
+      valid_pixel_expression: not PIXEL_CLASSIFY_FLAGS.F_INVALID
+
+  - CHL_Bourg:
+      valid_pixel_expression: not (PIXEL_CLASSIFY_FLAGS.F_INVALID or PIXEL_CLASSIFY_FLAGS.F_CLOUD or PIXEL_CLASSIFY_FLAGS.F_LAND)
+
+
+
+# xcube global dataset metadata
+#
+# * NetCDF Attribute Convention for Dataset Discovery (as used by THREDDS data server catalogue)
+#   https://www.unidata.ucar.edu/software/thredds/current/netcdf-java/metadata/DataDiscoveryAttConvention.html
+# * CF Conventions
+#   http://cfconventions.org/Data/cf-conventions/cf-conventions-1.7/cf-conventions.html#description-of-file-contents
+#
+output_metadata:
+  # CF: A succinct description of what is in the dataset.
+  title: "DCS4COP Sentinel-2 L2C Data Cube"
+
+  # CF: The method of production of the original data.
+  # If it was model-generated, source should name the model and its version, as specifically as could be useful.
+  # If it is observational, source should characterize it (e.g., "surface observation" or "radiosonde").
+  source: "Sentinel-2 VITO"
+
+
+  # CF: Published or web-based references that describe the data or methods used to produce it.
+  references: "https://dcs4cop.eu/"
+
+  # CF: Miscellaneous information about the data or methods used to produce it.
+  comment: ""
+
+  # A paragraph describing the dataset.
+  summary: ""
+
+  # A comma separated list of key words and phrases.
+  keywords: ""
+
+  # The combination of the "naming authority" and the "id" should be a globally unique identifier for the dataset.
+  id: "dcs4cop-bc-s2-sns-l2c-v1"
+  naming_authority: "bc"
+
+  # The scientific project that produced the data.
+  project: "DCS4COP"
+
+  # A textual description of the processing (or quality control) level of the data.
+  processing_level: "L2C"
+
+  # A place to acknowledge various type of support for the project that produced this data.
+  acknowledgment: "Sentinel2 VITO"
+
+  # The name of the controlled vocabulary from which variable standard names are taken.
+  standard_name_vocabulary: ""
+
+  # Describe the restrictions to data access and distribution.
+  license: "terms and conditions of the DCS4COP data distribution"
+
+  # CF: Provides an audit trail for modifications to the original data.
+  # Well-behaved generic netCDF filters will automatically append their name and the
+  # parameters with which they were invoked to the global history attribute of an input netCDF file.
+  # We recommend that each line begin with a timestamp indicating the date and time of day
+  # that the program was executed.
+  history: "xcube/reproj-snap-nc"
+
+  # CF: Specifies where the original data was produced.
+  institution: "Brockmann Consult GmbH"
+
+  # The data creator's name, URL, and email.
+  # The "institution" attribute will be used if the "creator_name" attribute does not exist.
+  creator:
+    - name: "Brockmann Consult GmbH"
+      url: "https://www.brockmann-consult.de"
+      email: "info@brockmann-consult.de"
+
+  publisher:
+    - name:  "Brockmann Consult GmbH"
+      url:   "https://www.brockmann-consult.de"
+      email: "info@brockmann-consult.de"
