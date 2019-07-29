@@ -18,7 +18,7 @@ output_writer_params:
     lon: 684
     lat: 428
 
-output_name: dcs4cop_xcube_S2A_FLANDERS_2017_1x428x684
+output_path: dcs4cop_xcube_S2A_FLANDERS_2017_1x428x684.zarr
 
 output_variables:
 
