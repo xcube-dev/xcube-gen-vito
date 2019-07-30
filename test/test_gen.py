@@ -30,8 +30,8 @@ class VitoS2PlusProcessTest(unittest.TestCase):
     # noinspection PyMethodMayBeStatic
     def test_process_inputs_single(self):
         path, status = process_inputs_wrapper(
-            input_files=[INPUT_FILE],
-            output_name='s2plus-output',
+            input_paths=[INPUT_FILE],
+            output_path='s2plus-output.nc',
             output_writer='netcdf4',
             append_mode=False)
         self.assertEqual(True, status)
@@ -39,19 +39,18 @@ class VitoS2PlusProcessTest(unittest.TestCase):
 
 
 # noinspection PyShadowingBuiltins
-def process_inputs_wrapper(input_files=None,
-                           output_name=None,
+def process_inputs_wrapper(input_paths=None,
+                           output_path=None,
                            output_writer='netcdf4',
                            append_mode=False):
-    return gen_cube(input_files=input_files,
+    return gen_cube(input_paths=input_paths,
                     input_processor='vito-s2plus-l2',
                     output_size=(6, 4),
                     output_region=(0.2727627754211426, 51.3291015625, 0.273336261510849, 51.329463958740234),
                     output_resampling='Nearest',
                     output_variables=[('rrs_443', None),
                                       ('rrs_665', None)],
-                    output_dir='.',
-                    output_name=output_name,
+                    output_path=output_path,
                     output_writer=output_writer,
                     append_mode=append_mode,
                     dry_run=False,
