@@ -29,13 +29,12 @@ class VitoS2PlusProcessTest(unittest.TestCase):
 
     # noinspection PyMethodMayBeStatic
     def test_process_inputs_single(self):
-        path, status = process_inputs_wrapper(
+        status = process_inputs_wrapper(
             input_paths=[INPUT_FILE],
             output_path='s2plus-output.nc',
             output_writer='netcdf4',
             append_mode=False)
         self.assertEqual(True, status)
-        self.assertEqual(os.path.join('.', 's2plus-output.nc'), path)
 
 
 # noinspection PyShadowingBuiltins
