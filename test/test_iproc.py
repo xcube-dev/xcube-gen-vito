@@ -6,7 +6,7 @@ import xarray as xr
 
 from test.sampledata import create_s2plus_dataset
 from xcube_gen_vito.iproc import VitoS2PlusInputProcessor
-from xcube.util.timecoord import get_time_in_days_since_1970
+from xcube.util.timecoord import to_time_in_days_since_1970
 
 
 class VitoS2PlusInputProcessorTest(unittest.TestCase):
@@ -22,8 +22,8 @@ class VitoS2PlusInputProcessorTest(unittest.TestCase):
     def test_get_time_range(self):
         ds = create_s2plus_dataset()
         t1, t2 = self.processor.get_time_range(ds)
-        self.assertEqual(get_time_in_days_since_1970("2018-08-02T10:59:38.888000Z"), t1)
-        self.assertEqual(get_time_in_days_since_1970("2018-08-02T10:59:38.888000Z"), t2)
+        self.assertEqual(to_time_in_days_since_1970("2018-08-02T10:59:38.888000Z"), t1)
+        self.assertEqual(to_time_in_days_since_1970("2018-08-02T10:59:38.888000Z"), t2)
 
     def test_pre_process(self):
         ds1 = create_s2plus_dataset()
