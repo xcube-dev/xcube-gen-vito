@@ -20,8 +20,10 @@
 # SOFTWARE.
 
 
-def init_plugin(ext_registry: 'xcube.api.ExtensionRegistry'):
-    ext_registry.add_ext_lazy(_input_processor, 'iproc', 'vito-s2plus-l2')
+def init_plugin(ext_registry: 'xcube.util.ext.ExtensionRegistry'):
+    ext_registry.add_ext_lazy(_input_processor,
+                              'xcube.core.gen.iproc', 'vito-s2plus-l2',
+                              description='VITO Sentinel-2 Plus Level 2 NetCDF inputs')
 
 
 def _input_processor():
