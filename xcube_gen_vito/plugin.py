@@ -19,5 +19,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from .plugin import init_plugin
 
+def init_plugin(ext_registry: 'xcube.api.ExtensionRegistry'):
+    ext_registry.add_ext_lazy(_input_processor, 'iproc', 'vito-s2plus-l2')
+
+
+def _input_processor():
+    from .iproc import VitoS2PlusInputProcessor
+    return VitoS2PlusInputProcessor()

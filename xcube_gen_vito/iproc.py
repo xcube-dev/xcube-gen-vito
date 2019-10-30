@@ -85,8 +85,3 @@ class VitoS2PlusInputProcessor(InputProcessor):
                                   scale_factor,
                                   false_easting,
                                   false_northing)
-
-
-def init_plugin():
-    """ Register plugin. """
-    register_input_processor(VitoS2PlusInputProcessor())

@@ -30,21 +30,12 @@ requirements = [
 
 packages = find_packages(exclude=["test", "test.*"])
 
-# Same effect as "from cate import version", but avoids importing cate:
-version = None
-
-
 setup(
     name="xcube-gen-vito",
-    version=version,
+    version='0.3.0.dev0',
     description='xcube input processor for data provided by VITO',
     license='MIT',
     author='xcube Development Team',
     packages=packages,
-    entry_points={
-        'xcube_plugins': [
-            'xcube_gen_vito = xcube_gen_vito:init_plugin',
-        ],
-    },
     install_requires=requirements,
 )
