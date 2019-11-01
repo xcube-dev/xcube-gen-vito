@@ -19,13 +19,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-
-def init_plugin(ext_registry: 'xcube.util.ext.ExtensionRegistry'):
-    ext_registry.add_ext_lazy(_input_processor,
-                              'xcube.core.gen.iproc', 'vito-s2plus-l2',
-                              description='VITO Sentinel-2 Plus Level 2 NetCDF inputs')
+from xcube.util import extension
 
 
-def _input_processor():
-    from .iproc import VitoS2PlusInputProcessor
-    return VitoS2PlusInputProcessor()
+def init_plugin(ext_registry: extension.ExtensionRegistry):
+    ext_registry.add_extension(
+        loader=extension.import_component('xcube_gen_vito.iproc:VitoS2PlusInputProcessor', call=True),
+        point='xcube.core.gen.iproc', name='vito-s2plus-l2',
+        description='VITO Sentinel-2 Plus Level 2 NetCDF inputs'
+    )
