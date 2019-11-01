@@ -23,8 +23,8 @@ from typing import Tuple, Optional, Collection
 
 import xarray as xr
 
-from xcube.api.gen.default.iproc import DefaultInputProcessor
-from xcube.api.gen.iproc import InputProcessor
+from xcube.core.gen.default.iproc import DefaultInputProcessor
+from xcube.core.gen.iproc import InputProcessor
 from xcube.util.reproject import reproject_crs_to_wgs84, get_projection_wkt
 
 

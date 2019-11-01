@@ -2,7 +2,7 @@ import os
 import unittest
 
 from test.sampledata import create_s2plus_dataset
-from xcube.api.gen.gen import gen_cube
+from xcube.core.gen.gen import gen_cube
 from xcube.util.dsio import rimraf
 from test.helpers import get_inputdata_path
 
