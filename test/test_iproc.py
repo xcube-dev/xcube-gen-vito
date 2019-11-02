@@ -6,7 +6,7 @@ import xarray as xr
 
 from test.sampledata import create_s2plus_dataset
 from xcube_gen_vito.iproc import VitoS2PlusInputProcessor
-from xcube.util.timecoord import to_time_in_days_since_1970
+from xcube.core.timecoord import to_time_in_days_since_1970
 
 
 class VitoS2PlusInputProcessorTest(unittest.TestCase):

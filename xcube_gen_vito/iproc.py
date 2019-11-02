@@ -25,7 +25,7 @@ import xarray as xr
 
 from xcube.core.gen.default.iproc import DefaultInputProcessor
 from xcube.core.gen.iproc import InputProcessor
-from xcube.util.reproject import reproject_crs_to_wgs84, get_projection_wkt
+from xcube.core.reproject import reproject_crs_to_wgs84, get_projection_wkt
 
 
 class VitoS2PlusInputProcessor(InputProcessor):
