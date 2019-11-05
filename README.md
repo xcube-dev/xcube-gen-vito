@@ -51,3 +51,13 @@ with [coverage report](https://pytest-cov.readthedocs.io/en/latest/reporting.htm
 
     $ pytest --cov-report html --cov=xcube
 
+# Developer Guide 
+
+...is [here](https://xcube.readthedocs.io/en/latest/devguide.html).
+
+
+# User Guide
+
+Please use the [README](https://xcube.readthedocs.io/en/latest/index.html) 
+of xcube for further information. 
+
