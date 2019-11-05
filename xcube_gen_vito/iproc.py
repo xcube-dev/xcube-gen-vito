@@ -22,10 +22,10 @@
 from typing import Tuple, Optional, Collection
 
 import xarray as xr
-from xcube.api.gen.default.iproc import DefaultInputProcessor
-from xcube.util.reproject import reproject_crs_to_wgs84, get_projection_wkt
 
-from xcube.api.gen.iproc import InputProcessor, register_input_processor
+from xcube.core.gen.iproc import DefaultInputProcessor
+from xcube.core.gen.iproc import InputProcessor
+from xcube.core.reproject import reproject_crs_to_wgs84, get_projection_wkt
 
 
 class VitoS2PlusInputProcessor(InputProcessor):
@@ -33,13 +33,8 @@ class VitoS2PlusInputProcessor(InputProcessor):
     Input processor for VITO's Sentinel-2 Plus Level-2 NetCDF inputs.
     """
 
-    @property
-    def name(self) -> str:
-        return 'vito-s2plus-l2'
-
-    @property
-    def description(self) -> str:
-        return 'VITO Sentinel-2 Plus Level 2 NetCDF inputs'
+    def __init__(self):
+        super().__init__('vito-s2plus-l2')
 
     @property
     def input_reader(self) -> str:
@@ -85,8 +80,3 @@ class VitoS2PlusInputProcessor(InputProcessor):
                                   scale_factor,
                                   false_easting,
                                   false_northing)
-
-
-def init_plugin():
-    """ Register plugin. """
-    register_input_processor(VitoS2PlusInputProcessor())

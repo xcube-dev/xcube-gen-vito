@@ -2,8 +2,8 @@ import os
 import unittest
 
 from test.sampledata import create_s2plus_dataset
-from xcube.api.gen.gen import gen_cube
-from xcube.util.dsio import rimraf
+from xcube.core.gen.gen import gen_cube
+from xcube.core.dsio import rimraf
 from test.helpers import get_inputdata_path
 
 INPUT_FILE = get_inputdata_path('s2plus-input.nc')
