@@ -40,6 +40,9 @@ class VitoS2PlusInputProcessor(InputProcessor):
     def input_reader(self) -> str:
         return 'netcdf4'
 
+    def get_time_for_sorting(self, dataset: xr.Dataset) -> Optional[str]:
+        return DefaultInputProcessor().get_time_for_sorting(dataset)
+
     def get_time_range(self, dataset: xr.Dataset) -> Tuple[float, float]:
         return DefaultInputProcessor().get_time_range(dataset)
 
