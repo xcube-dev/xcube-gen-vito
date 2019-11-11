@@ -19,13 +19,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from typing import Tuple, Optional, Collection
+from typing import Collection, Optional, Tuple
 
 import xarray as xr
-
 from xcube.core.gen.iproc import DefaultInputProcessor
 from xcube.core.gen.iproc import InputProcessor
-from xcube.core.reproject import reproject_crs_to_wgs84, get_projection_wkt
+from xcube.core.reproject import get_projection_wkt, reproject_crs_to_wgs84
 
 
 class VitoS2PlusInputProcessor(InputProcessor):
@@ -39,9 +38,6 @@ class VitoS2PlusInputProcessor(InputProcessor):
     @property
     def input_reader(self) -> str:
         return 'netcdf4'
-
-    def get_time_for_sorting(self, dataset: xr.Dataset) -> Optional[str]:
-        return DefaultInputProcessor().get_time_for_sorting(dataset)
 
     def get_time_range(self, dataset: xr.Dataset) -> Tuple[float, float]:
         return DefaultInputProcessor().get_time_range(dataset)
