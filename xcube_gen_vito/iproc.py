@@ -19,13 +19,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from typing import Tuple, Optional, Collection
+from typing import Collection, Optional, Tuple
 
 import xarray as xr
-
 from xcube.core.gen.iproc import DefaultInputProcessor
 from xcube.core.gen.iproc import InputProcessor
-from xcube.core.reproject import reproject_crs_to_wgs84, get_projection_wkt
+from xcube.core.reproject import get_projection_wkt, reproject_crs_to_wgs84
 
 
 class VitoS2PlusInputProcessor(InputProcessor):
