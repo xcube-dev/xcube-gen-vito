@@ -31,11 +31,10 @@ install:
   - conda list
   - python setup.py install
   - cd ..
-  - git clone https://github.com/dcs4cop/xcube-gen-vito.git
+  - git clone --branch=$TRAVIS_BRANCH https://github.com/dcs4cop/xcube-gen-vito.git
   - cd xcube-gen-vito
   - python setup.py install
   
-  - pytest
   - py.test -v --cov=xcube
 
 after_success:
