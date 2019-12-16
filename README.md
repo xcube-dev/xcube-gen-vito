@@ -3,7 +3,7 @@
 
 # xcube-gen-vito
 
-This is a plugin for xcube which can be used for processing inputdata provided by RBINS. 
+This is a plugin for xcube which can be used for processing inputdata provided by VITO. 
 With xcube-gen-vito all features of xcube can be used. 
 In order to use the xcube-gen-vito you need to install xcube first: 
 
