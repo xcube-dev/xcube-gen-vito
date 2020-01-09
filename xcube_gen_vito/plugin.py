@@ -25,7 +25,7 @@ from xcube.util import extension
 
 def init_plugin(ext_registry: extension.ExtensionRegistry):
     ext_registry.add_extension(
-        loader=extension.import_component('xcube_gen_vito.iproc:VitoS2PlusInputProcessor', call=True),
+        loader=extension.import_component('xcube_gen_vito.iproc:VitoS2PlusInputProcessor'),
         point=EXTENSION_POINT_INPUT_PROCESSORS, name='vito-s2plus-l2',
         description='VITO Sentinel-2 Plus Level 2 NetCDF inputs'
     )

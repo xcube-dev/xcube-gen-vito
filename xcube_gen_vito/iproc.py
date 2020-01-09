@@ -19,9 +19,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from typing import Collection, Optional, Tuple
+from typing import Collection, Optional, Tuple, Dict, Any
 
 import xarray as xr
+
 from xcube.core.gen.iproc import DefaultInputProcessor
 from xcube.core.gen.iproc import InputProcessor
 from xcube.core.reproject import get_projection_wkt, reproject_crs_to_wgs84
@@ -32,12 +33,14 @@ class VitoS2PlusInputProcessor(InputProcessor):
     Input processor for VITO's Sentinel-2 Plus Level-2 NetCDF inputs.
     """
 
-    def __init__(self):
-        super().__init__('vito-s2plus-l2')
+    def __init__(self, **parameters):
+        super().__init__('vito-s2plus-l2', **parameters)
 
     @property
-    def input_reader(self) -> str:
-        return 'netcdf4'
+    def default_parameters(self) -> Dict[str, Any]:
+        default_parameters = super().default_parameters
+        default_parameters.update(input_reader='netcdf4')
+        return default_parameters
 
     def get_time_range(self, dataset: xr.Dataset) -> Tuple[float, float]:
         return DefaultInputProcessor().get_time_range(dataset)
