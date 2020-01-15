@@ -25,6 +25,8 @@ import xarray as xr
 
 from xcube.core.gen.iproc import DefaultInputProcessor
 from xcube.core.gen.iproc import InputProcessor
+from xcube.core.geocoding import GeoCoding
+from xcube.core.imgeom import ImageGeom
 from xcube.core.reproject import get_projection_wkt, reproject_crs_to_wgs84
 
 
@@ -54,15 +56,15 @@ class VitoS2PlusInputProcessor(InputProcessor):
 
     def process(self,
                 dataset: xr.Dataset,
-                dst_size: Tuple[int, int],
-                dst_region: Tuple[float, float, float, float],
-                dst_resampling: str,
+                geo_coding: GeoCoding,
+                output_geom: ImageGeom,
+                output_resampling: str,
                 include_non_spatial_vars=False) -> xr.Dataset:
         return reproject_crs_to_wgs84(dataset,
                                       self.get_dataset_crs(dataset),
-                                      dst_size,
-                                      dst_region,
-                                      dst_resampling,
+                                      dst_size=output_geom.size,
+                                      dst_region=output_geom.xy_bbox,
+                                      dst_resampling=output_resampling,
                                       include_non_spatial_vars=include_non_spatial_vars)
 
     @classmethod
