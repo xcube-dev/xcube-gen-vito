@@ -1,11 +1,13 @@
 import os
 import unittest
 
-from test.sampledata import create_s2plus_dataset
-from xcube.core.gen.gen import gen_cube
-from xcube.core.dsio import rimraf
+import numpy as np
 import xarray as xr
+
 from test.helpers import get_inputdata_path
+from test.sampledata import create_s2plus_dataset
+from xcube.core.dsio import rimraf
+from xcube.core.gen.gen import gen_cube
 
 INPUT_FILE = get_inputdata_path('s2plus-input.nc')
 OUTPUT_FILE = 's2plus-output.nc'
@@ -54,9 +56,14 @@ class VitoS2PlusProcessTest(unittest.TestCase):
         self.assertEqual(True, status)
         ds_unchunked = xr.open_zarr('s2plus-output.zarr')
         ds_tiled = xr.open_zarr('s2plus-output-tiled.zarr')
-        compare = (ds_tiled.rrs_443.values == ds_unchunked.rrs_443.values)
-        self.assertTrue(compare.all())
-        self.assertTrue(ds_tiled.equals(ds_unchunked))
+        expected_data = np.array([[
+            [0.014, 0.014, 0.016998, 0.016998, 0.016998, 0.016998],
+            [0.014, 0.014, 0.016998, 0.016998, 0.016998, 0.016998],
+            [0.019001, 0.019001, 0.016998, 0.016998, 0.016998, 0.016998],
+            [0.019001, 0.019001, 0.016998, 0.016998, 0.016998, 0.016998],
+        ]])
+        np.testing.assert_allclose(ds_tiled.rrs_443.values, expected_data)
+        np.testing.assert_allclose(ds_unchunked.rrs_443.values, expected_data)
 
 
 # noinspection PyShadowingBuiltins
