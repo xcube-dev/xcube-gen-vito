@@ -41,10 +41,3 @@ class VitoS2PlusInputProcessor(XYInputProcessor):
 
     def get_time_range(self, dataset: xr.Dataset) -> Tuple[float, float]:
         return DefaultInputProcessor().get_time_range(dataset)
-
-    def get_extra_vars(self, dataset: xr.Dataset) -> Optional[Collection[str]]:
-        return ["transverse_mercator"]
-
-    def pre_process(self, dataset: xr.Dataset) -> xr.Dataset:
-        # TODO (forman): clarify with VITO how to correctly mask the S2+ variables
-        return super().pre_process(dataset)
