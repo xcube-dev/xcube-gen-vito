@@ -62,8 +62,8 @@ class VitoS2PlusProcessTest(unittest.TestCase):
             [0.019001, 0.019001, 0.016998, 0.016998, 0.016998, 0.016998],
             [0.019001, 0.019001, 0.016998, 0.016998, 0.016998, 0.016998],
         ]])
-        np.testing.assert_allclose(ds_tiled.rrs_443.values, expected_data)
         np.testing.assert_allclose(ds_unchunked.rrs_443.values, expected_data)
+        np.testing.assert_allclose(ds_tiled.rrs_443.values, expected_data)
 
 
 # noinspection PyShadowingBuiltins
